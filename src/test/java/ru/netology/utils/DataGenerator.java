@@ -4,11 +4,9 @@ import com.github.javafaker.Faker;
 import lombok.experimental.UtilityClass;
 import ru.netology.entities.RegistrationInfo;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-
+@UtilityClass
 public class DataGenerator {
 
     @UtilityClass
@@ -17,9 +15,5 @@ public class DataGenerator {
             Faker faker = new Faker(new Locale(locale));
             return new RegistrationInfo(faker.address().city(), faker.name().fullName(), faker.phoneNumber().phoneNumber());
         }
-    }
-
-    public String GenerateDate(int days) {
-        return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 }
