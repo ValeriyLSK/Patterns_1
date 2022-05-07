@@ -29,14 +29,15 @@ public class CardDeliveryTest {
     @Test
     public void shouldGenerateData() {
         $x("//*[@class='checkbox__box']").click();
+        $x("//input[@placeholder='Дата встречи']").doubleClick().sendKeys(DataGenerator.generateDate(3));
         $x("//button[contains(span,'Запланировать')]").click();
         $x("//*[@data-test-id='success-notification']").should(visible, Duration.ofSeconds(15));
-        $x("//*[@class='notification__content']").shouldHave(Condition.text("Встреча успешно запланирована на " + info.generateDate(3)), Duration.ofSeconds(15));
-        $x("//input[@placeholder='Дата встречи']").doubleClick().sendKeys(info.generateDate(5));
+        $x("//*[@class='notification__content']").shouldHave(Condition.text("Встреча успешно запланирована на " + DataGenerator.generateDate(3)), Duration.ofSeconds(15));
+        $x("//input[@placeholder='Дата встречи']").doubleClick().sendKeys(DataGenerator.generateDate(5));
         $x("//button[contains(span,'Запланировать')]").click();
         $x("//*[@data-test-id='replan-notification']").should(visible, Duration.ofSeconds(15));
         $x("//button[contains(span,'Перепланировать')]").click();
-        $x("//*[@class='notification__content']").shouldHave(Condition.text("Встреча успешно запланирована на " + info.generateDate(5)), Duration.ofSeconds(15));
+        $x("//*[@class='notification__content']").shouldHave(Condition.text("Встреча успешно запланирована на " + DataGenerator.generateDate(5)), Duration.ofSeconds(15));
 
     }
 }
